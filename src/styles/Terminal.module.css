@@ -1,0 +1,101 @@
+.terminal {
+  background: #1A1A12 !important;
+  color: #A8E6A3;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.6;
+  padding: 16px;
+  height: 100%;
+  overflow-y: auto;
+  cursor: text;
+}
+
+.output {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.promptLine {
+  display: flex;
+  align-items: center;
+}
+
+.promptText {
+  color: #4ADE80;
+  white-space: pre;
+  flex-shrink: 0;
+}
+
+.inputField {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #A8E6A3;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  caret-color: #A8E6A3;
+}
+
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  background: #A8E6A3;
+  animation: cursorBlink 1s step-end infinite;
+  vertical-align: text-bottom;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.matrixCanvas {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+}
+
+.asciiArt {
+  color: #4ADE80;
+}
+
+.commandOutput {
+  margin-bottom: 4px;
+}
+
+.errorText {
+  color: #FF6B6B;
+}
+
+.accentText {
+  color: var(--accent);
+}
+
+/* ── MOBILE ─────────────────────── */
+@media (max-width: 768px) {
+  .terminal {
+    padding: 12px;
+    font-size: 12px;
+  }
+
+  .inputField {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .terminal {
+    padding: 8px;
+    font-size: 11px;
+  }
+
+  .inputField {
+    font-size: 11px;
+  }
+
+  .promptText {
+    font-size: 11px;
+  }
+}

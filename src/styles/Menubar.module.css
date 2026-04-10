@@ -1,0 +1,340 @@
+.menubar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--menubar-height);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--menubar-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--menubar-color);
+  user-select: none;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding-left: 8px;
+  height: 100%;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-right: 12px;
+  height: 100%;
+}
+
+.logoIcon {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 6px;
+  cursor: pointer;
+}
+
+.menuItem {
+  position: relative;
+  cursor: pointer;
+  padding: 3px 10px;
+  border-radius: 0;
+  transition: background 0.12s;
+  color: inherit;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.menuItem:hover {
+  background: rgba(0,0,0,0.06);
+}
+
+.menuItemActive {
+  background: rgba(0,0,0,0.1);
+}
+
+/* Hide File menu on mobile */
+.fileMenu {
+  display: block;
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  min-width: 240px;
+  background: var(--bg-window);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.22);
+  padding: 4px 0;
+  z-index: 1001;
+  overflow: hidden;
+  color: var(--text-primary);
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 32px;
+  padding: 0 16px;
+  font-size: 13px;
+  cursor: pointer;
+  color: var(--text-primary);
+  transition: background 0.1s;
+}
+
+.dropdownItem:hover {
+  background: var(--accent);
+  color: white;
+}
+
+.shortcut {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: var(--font-ui);
+  margin-left: 24px;
+}
+
+.dropdownItem:hover .shortcut {
+  color: rgba(255,255,255,0.7);
+}
+
+.dropdownDivider {
+  height: 1px;
+  background: var(--border-light);
+  margin: 4px 0;
+}
+
+.clock {
+  font-size: 13px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: inherit;
+}
+
+.gearBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 3px;
+  border-radius: 0;
+  transition: background 0.12s;
+  position: relative;
+  color: inherit;
+}
+
+.gearBtn:hover {
+  background: rgba(0,0,0,0.06);
+}
+
+.gearBtnActive {
+  background: rgba(0,0,0,0.1);
+}
+
+/* Quick Settings Panel */
+.settingsPanel {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  width: 240px;
+  background: var(--bg-window);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.22);
+  padding: 16px;
+  z-index: 1001;
+  color: var(--text-primary);
+}
+
+.panelLabel {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.brightnessSlider {
+  width: 100%;
+  height: 4px;
+  border-radius: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--border);
+  outline: none;
+  margin: 8px 0 4px;
+}
+
+.brightnessSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 0;
+  background: var(--accent);
+  cursor: pointer;
+}
+
+.brightnessLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.panelColorRow {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.panelSwatch {
+  width: 32px;
+  height: 24px;
+  border-radius: 0;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.15s;
+}
+
+.panelSwatchActive {
+  border-color: var(--text-primary);
+}
+
+.panelToggleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 12px;
+  color: var(--text-primary);
+}
+
+.panelToggle {
+  width: 36px;
+  height: 20px;
+  border-radius: 0;
+  background: var(--border);
+  cursor: pointer;
+  position: relative;
+  border: none;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.panelToggleOn {
+  background: var(--accent) !important;
+}
+
+.panelToggleKnob {
+  width: 16px;
+  height: 16px;
+  border-radius: 0;
+  background: white;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: left 0.2s;
+}
+
+.panelToggleOn .panelToggleKnob {
+  left: 18px;
+}
+
+.toggleLabel {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-left: 6px;
+}
+
+.panelLink {
+  display: block;
+  font-size: 12px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-light);
+}
+
+.panelLink:hover {
+  color: var(--accent);
+}
+
+/* ── MOBILE ─────────────────────── */
+@media (max-width: 768px) {
+  .menubar {
+    font-size: 12px;
+  }
+
+  .left {
+    padding-left: 4px;
+  }
+
+  .right {
+    padding-right: 6px;
+    gap: 8px;
+  }
+
+  .fileMenu {
+    display: none;
+  }
+
+  .menuItem {
+    padding: 3px 6px;
+    font-size: 12px;
+  }
+
+  .clock {
+    font-size: 11px;
+  }
+
+  .settingsPanel {
+    position: fixed;
+    top: calc(var(--menubar-height) + 4px);
+    right: 6px;
+    width: 220px;
+    padding: 12px;
+  }
+
+  .dropdown {
+    min-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .menuItem {
+    padding: 3px 4px;
+    font-size: 11px;
+  }
+
+  .clock {
+    font-size: 10px;
+  }
+
+  .shortcut {
+    display: none;
+  }
+
+  .settingsPanel {
+    width: calc(100vw - 12px);
+    max-width: 240px;
+  }
+}

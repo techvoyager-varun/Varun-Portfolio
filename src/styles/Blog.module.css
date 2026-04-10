@@ -1,0 +1,193 @@
+.blog {
+  display: flex;
+  height: 100%;
+}
+
+.sidebar {
+  width: 180px;
+  min-width: 180px;
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  padding: 16px 0;
+}
+
+.sidebarLabel {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  padding: 0 16px 8px;
+}
+
+.tagBtn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-left: 2px solid transparent;
+}
+
+.tagBtnActive {
+  color: var(--accent);
+  font-weight: 500;
+  border-left-color: var(--accent);
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.postItem {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-light);
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.postItem:hover {
+  background: var(--border-light);
+}
+
+.postTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.postMeta {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.postTag {
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 10px;
+  padding: 1px 6px;
+  background: var(--border-light);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+.postExcerpt {
+  font-size: 12px;
+  color: var(--text-secondary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Post view */
+.postView {
+  padding: 24px 28px;
+}
+
+.backBtn {
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 16px;
+  font-family: var(--font-ui);
+}
+
+.postViewTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.postViewMeta {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.postViewContent {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--text-secondary);
+}
+
+/* ── MOBILE ─────────────────────── */
+@media (max-width: 768px) {
+  .blog {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-width: unset;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    padding: 8px;
+  }
+
+  .sidebarLabel {
+    display: none;
+  }
+
+  .tagBtn {
+    padding: 4px 10px;
+    font-size: 12px;
+    border-left: none;
+    border-bottom: 2px solid transparent;
+  }
+
+  .tagBtnActive {
+    border-left-color: transparent;
+    border-bottom-color: var(--accent);
+  }
+
+  .postView {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    padding: 6px;
+  }
+
+  .tagBtn {
+    font-size: 11px;
+    padding: 3px 6px;
+  }
+
+  .postItem {
+    padding: 12px;
+  }
+
+  .postTitle {
+    font-size: 13px;
+  }
+
+  .postView {
+    padding: 12px;
+  }
+
+  .postViewTitle {
+    font-size: 16px;
+  }
+
+  .postViewContent {
+    font-size: 13px;
+  }
+}

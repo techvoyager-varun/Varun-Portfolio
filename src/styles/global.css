@@ -1,0 +1,107 @@
+/* ── RESET ─────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow: hidden;
+  font-family: var(--font-ui);
+  background: var(--accent);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[data-theme="dark"] body {
+  background: #1A1714;
+}
+
+::selection {
+  background: var(--accent);
+  color: white;
+}
+
+/* ── LIGHT THEME (default) ────────────── */
+:root {
+  --bg-desktop: var(--accent);
+  --bg-desktop-dark: #1A1714;
+  --bg-window: #F5F2EC;
+  --bg-titlebar: #EDEBE4;
+  --bg-titlebar-inactive: #F2F0EA;
+  --border: #C8C4BC;
+  --border-light: #D8D4CC;
+  --text-primary: #1A1A18;
+  --text-secondary: #6B6860;
+  --text-muted: #9B9890;
+  --accent: #D4541A;
+  --accent-green: #4A7C59;
+  --accent-blue: #3B6EA5;
+  --accent-purple: #7C5C9E;
+  --accent-dark: #8B3510;
+  
+  --menubar-bg: rgba(255, 238, 221, 0.95); /* #ffeedd with slight transparency */
+  --dock-bg: rgba(255, 238, 221, 0.85); /* #ffeedd with blur support */
+  --menubar-color: #33241C; /* Dark color for readability on #ffeedd */
+  --dock-color: #33241C;
+
+  --shadow-window: 0 12px 48px rgba(0,0,0,0.28), 0 2px 8px rgba(0,0,0,0.12);
+  --shadow-window-inactive: 0 4px 20px rgba(0,0,0,0.15);
+  --radius-window: 0px;
+  --radius-dock: 0px;
+  --font-ui: "DM Sans", "DM Sans Fallback", sans-serif;
+  --font-mono: 'Fira Code', 'Courier New', monospace;
+  --menubar-height: 28px;
+  --dock-height: 56px;
+  --titlebar-height: 36px;
+  --font-size-base: 14px;
+  --input-bg: #F0EDE8;
+}
+
+/* ── DARK THEME ───────────────────────── */
+[data-theme="dark"] {
+  --bg-desktop: #1A1714;
+  --bg-window: #1E1C1A;
+  --bg-titlebar: #252320;
+  --bg-titlebar-inactive: #211F1D;
+  --border: #3A3830;
+  --border-light: #332F2A;
+  --text-primary: #F0EDE8;
+  --text-secondary: #9B9890;
+  --text-muted: #6B6860;
+  --menubar-bg: rgba(22, 20, 18, 0.85); /* Darker translucent for dark mode in contrast to ffeedd */
+  --dock-bg: rgba(22, 20, 18, 0.75);
+  --menubar-color: #F0EDE8; /* light text for dark mode */
+  --dock-color: #F0EDE8;
+
+  --input-bg: #2A2724;
+}
+
+/* ── SCROLLBAR ────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 0;
+}
+
+/* ── UTILITY ──────────────────────────── */
+#root {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ── MOBILE RESPONSIVE ────────────────── */
+@media (max-width: 768px) {
+  :root {
+    --menubar-height: 28px;
+    --dock-height: 48px;
+    --titlebar-height: 32px;
+  }
+}

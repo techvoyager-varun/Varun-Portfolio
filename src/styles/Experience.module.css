@@ -1,0 +1,154 @@
+.experience {
+  padding: 28px 32px;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 32px;
+}
+
+.timelineLine {
+  position: absolute;
+  left: 20px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: var(--border);
+}
+
+.timelineEntry {
+  position: relative;
+  margin-bottom: 32px;
+  padding-left: 8px;
+}
+
+.dot {
+  position: absolute;
+  left: -20px;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--border);
+}
+
+.dotCurrent {
+  background: var(--accent);
+  border: none;
+}
+
+.company {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.role {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 2px;
+}
+
+.dateRow {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  margin-bottom: 6px;
+}
+
+.currentBadge {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 9px;
+  padding: 1px 6px;
+  background: var(--accent);
+  color: white;
+  font-family: var(--font-ui);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.desc {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  font-size: 11px;
+  padding: 3px 10px;
+  background: var(--border-light);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+/* ── MOBILE ─────────────────────── */
+@media (max-width: 768px) {
+  .experience {
+    padding: 20px 16px;
+  }
+
+  .timeline {
+    padding-left: 24px;
+  }
+
+  .timelineLine {
+    left: 14px;
+  }
+
+  .dot {
+    left: -18px;
+    width: 8px;
+    height: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .experience {
+    padding: 14px 12px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .company {
+    font-size: 13px;
+  }
+
+  .role, .desc {
+    font-size: 12px;
+  }
+
+  .tag {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+
+  .timelineEntry {
+    margin-bottom: 20px;
+  }
+}

@@ -1,0 +1,70 @@
+import { projects } from './projects';
+import { blogPosts } from './blogPosts';
+
+export const ABOUT_TEXT = `Based in Alwar, Rajasthan, India, I am a B.Tech Computer Science and Engineering student at The LNM Institute of Information Technology. I have a passion for building robust applications and solving complex algorithmic challenges.
+
+Currently serving as a Teaching Assistant for Data Structures and Algorithms, where I mentor 400+ students and prepare rigorous lab assignments.`;
+
+export const BUILD_LOG = `## v1.0.0 — Initial Release
+- Built desktop OS UI with React and Framer Motion
+- Added 9 app windows: About, Works, Blog, Contact, Experience, Search, Settings, Terminal, Help
+- Implemented magnifying dock with spring animations
+- Created terminal with 15+ working commands
+- Added dark mode and accent color themes
+- Keyboard shortcuts for power users
+
+## v0.9.0 — Beta
+- Window manager with z-index stacking
+- Draggable, resizable windows via react-rnd
+- Boot screen with progress animation
+- Desktop icons with double-click open
+
+## v0.8.0 — Alpha
+- Initial layout: menubar, desktop, dock
+- Context-based state management
+- Routing with React Router DOM
+- CSS Modules design system`;
+
+export const SKILLS = {
+  Languages: 'C, C++, Java, JavaScript, Python',
+  Frameworks: 'React, Node, Express, MongoDB, Tailwind',
+  Tools: 'Git, Bash, Vite, Postman, Vite',
+  Other: 'DSA, OOP, OS, DBMS',
+};
+
+export function getSearchIndex() {
+  const items = [];
+
+  items.push(
+    { type: 'page', id: 'about', title: 'About', subtitle: 'Learn about me' },
+    { type: 'page', id: 'works', title: 'Works', subtitle: 'Browse projects' },
+    { type: 'page', id: 'blog', title: 'Blog', subtitle: 'Read articles' },
+    { type: 'page', id: 'contact', title: 'Contact', subtitle: 'Get in touch' },
+    { type: 'page', id: 'experience', title: 'Experience', subtitle: 'Career timeline' },
+    { type: 'page', id: 'terminal', title: 'Terminal', subtitle: 'Interactive CLI' },
+    { type: 'page', id: 'settings', title: 'Settings', subtitle: 'Appearance & preferences' },
+    { type: 'page', id: 'help', title: 'Help', subtitle: 'Keyboard shortcuts & guide' }
+  );
+
+  projects.forEach((p) => {
+    items.push({
+      type: 'work',
+      id: 'works',
+      projectId: p.id,
+      title: p.name,
+      subtitle: `${p.role} • ${p.type}`,
+    });
+  });
+
+  blogPosts.forEach((b) => {
+    items.push({
+      type: 'blog',
+      id: 'blog',
+      postId: b.id,
+      title: b.title,
+      subtitle: `${b.date} • ${b.readTime}`,
+    });
+  });
+
+  return items;
+}

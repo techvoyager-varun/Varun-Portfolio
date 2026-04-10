@@ -1,0 +1,225 @@
+.settings {
+  padding: 28px 32px;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.title {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 28px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+
+/* Bordered sections */
+.section {
+  border: 1px solid var(--border);
+  border-radius: 0;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+}
+
+.sectionTitle {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 18px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.fieldLabel {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  margin-top: 14px;
+}
+
+.fieldLabel:first-of-type {
+  margin-top: 0;
+}
+
+/* Theme toggle */
+.themeToggle {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.themeBtn {
+  padding: 6px 16px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  color: var(--text-primary);
+  transition: all 0.15s;
+}
+
+.themeBtnActive {
+  background: var(--accent) !important;
+  color: white !important;
+}
+
+/* Color pills */
+.colorPills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.colorPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--text-primary);
+  background: transparent;
+  transition: all 0.15s;
+}
+
+.colorPill:hover {
+  background: var(--border-light);
+}
+
+.colorPillActive {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+}
+
+.colorDot {
+  width: 14px;
+  height: 14px;
+  border-radius: 0;
+  flex-shrink: 0;
+}
+
+/* Wallpaper subtitle */
+.wallpaperSubtitle {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+/* Wallpaper grid — 2 columns on desktop */
+.wallpaperGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.wallpaperCard {
+  border-radius: 0;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.15s;
+  position: relative;
+}
+
+.wallpaperCard:hover {
+  border-color: var(--border);
+}
+
+.wallpaperCardActive {
+  border-color: var(--accent) !important;
+}
+
+.wallpaperPlaceholder {
+  width: 100%;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wallpaperLabel {
+  font-size: 11px;
+  color: var(--text-secondary);
+  padding: 6px 8px;
+  background: var(--bg-titlebar);
+  border-top: 1px solid var(--border-light);
+}
+
+/* ── MOBILE ─────────────────────── */
+@media (max-width: 768px) {
+  .settings {
+    padding: 20px 16px;
+  }
+
+  .title {
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
+
+  .section {
+    padding: 14px 16px;
+    margin-bottom: 14px;
+  }
+
+  .sectionTitle {
+    font-size: 16px;
+  }
+
+  /* 1 column wallpaper on mobile — full-width large cards */
+  .wallpaperGrid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .wallpaperPlaceholder {
+    height: 160px;
+  }
+}
+
+@media (max-width: 480px) {
+  .settings {
+    padding: 14px 12px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .section {
+    padding: 12px;
+  }
+
+  .colorPill {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+
+  .wallpaperPlaceholder {
+    height: 140px;
+  }
+
+  .wallpaperLabel {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  .settings {
+    padding: 10px 8px;
+  }
+
+  .section {
+    padding: 10px;
+  }
+
+  .wallpaperPlaceholder {
+    height: 120px;
+  }
+}

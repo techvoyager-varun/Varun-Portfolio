@@ -1,0 +1,117 @@
+.help {
+  padding: 28px 32px;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+
+.sectionLabel {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 28px;
+}
+
+.tableRow {
+  border-bottom: 1px solid var(--border-light);
+}
+
+.tableCell {
+  padding: 8px 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.tableCellKeys {
+  padding: 8px 0;
+  width: 50%;
+}
+
+.keyBadge {
+  display: inline-block;
+  padding: 2px 6px;
+  background: var(--border-light);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-primary);
+  margin-right: 4px;
+}
+
+.keyPlus {
+  margin-right: 4px;
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.bulletList {
+  list-style: none;
+  padding: 0;
+}
+
+.bulletItem {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  padding-left: 16px;
+  position: relative;
+  margin-bottom: 4px;
+}
+
+.bulletDot {
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 4px;
+  height: 4px;
+  background: var(--accent);
+}
+
+/* ── MOBILE ─────────────────────── */
+@media (max-width: 768px) {
+  .help {
+    padding: 20px 16px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .help {
+    padding: 14px 12px;
+  }
+
+  .title {
+    font-size: 15px;
+    margin-bottom: 14px;
+  }
+
+  .tableCell, .bulletItem {
+    font-size: 12px;
+  }
+
+  .keyBadge {
+    font-size: 10px;
+    padding: 1px 4px;
+  }
+
+  .tableCellKeys {
+    width: 40%;
+  }
+}
