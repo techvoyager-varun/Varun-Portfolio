@@ -103,6 +103,14 @@ const DESKTOP_ICONS = [
       icon: '📝',
     },
   },
+  {
+    id: 'resume-pdf',
+    label: 'Varun_Resume.pdf',
+    type: 'pdf',
+    top: 306,
+    left: 96,
+    href: '/resume.pdf',
+  },
 ];
 
 function FolderIconGraphic() {
@@ -117,7 +125,13 @@ function FolderIconGraphic() {
 }
 
 export default function DesktopIcon({ icon, index, onOpen }) {
-  const handleClick = () => onOpen(icon);
+  const handleClick = () => {
+    if (icon.type === 'pdf') {
+      window.open(icon.href, '_blank');
+    } else {
+      onOpen(icon);
+    }
+  };
 
   const getIconContent = () => {
     switch (icon.type) {
@@ -131,6 +145,12 @@ export default function DesktopIcon({ icon, index, onOpen }) {
         return (
           <div className={`${styles.iconGraphic} ${styles.envelopeIcon}`}>
             <Mail size={26} color="rgba(255,255,255,0.9)" strokeWidth={1.5} />
+          </div>
+        );
+      case 'pdf':
+        return (
+          <div className={`${styles.iconGraphic} ${styles.fileIcon}`}>
+            <FileText size={24} color="#D4541A" />
           </div>
         );
       case 'file':
