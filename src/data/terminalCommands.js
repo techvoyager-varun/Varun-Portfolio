@@ -3,8 +3,7 @@ import { blogPosts } from './blogPosts';
 import { PHOTO_FOLDERS } from './photos';
 
 export const ABOUT_TEXT = `Based in Alwar, Rajasthan, India, I am a B.Tech Computer Science and Engineering student at The LNM Institute of Information Technology. I have a passion for building robust applications and solving complex algorithmic challenges.
-
-Currently serving as a Teaching Assistant for Data Structures and Algorithms, where I mentor 400+ students and prepare rigorous lab assignments.`;
+`;
 
 export const BUILD_LOG = `## v1.0.0 — Initial Release
 - Built desktop OS UI with React and Framer Motion
