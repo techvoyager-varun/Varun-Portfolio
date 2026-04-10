@@ -1,14 +1,15 @@
 import React, { useState, useRef, useEffect, useCallback, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { CornerDownLeft } from 'lucide-react';
 import { useDesktop } from '../context/DesktopContext';
 import { WINDOW_DEFS } from '../components/Dock';
 import { getSearchIndex } from '../data/terminalCommands';
-import { Search as SearchIcon } from 'lucide-react';
+import styles from '../styles/Search.module.css';
 
 const searchIndex = getSearchIndex();
 
 function SearchWindow() {
-  const { openWindow, closeWindow } = useDesktop();
+  const { openWindow, closeWindow, closeAllWindows, windows } = useDesktop();
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef(null);
@@ -17,137 +18,103 @@ function SearchWindow() {
     if (inputRef.current) inputRef.current.focus();
   }, []);
 
-  const results = query.trim()
-    ? searchIndex.filter((item) =>
-        item.title.toLowerCase().includes(query.toLowerCase()) ||
-        (item.subtitle && item.subtitle.toLowerCase().includes(query.toLowerCase()))
-      )
-    : searchIndex.slice(0, 12);
+  const getResults = (q) => {
+    if (!q.trim()) return [];
+    return searchIndex.filter((item) =>
+      item.title.toLowerCase().includes(q.toLowerCase()) ||
+      (item.subtitle && item.subtitle.toLowerCase().includes(q.toLowerCase()))
+    );
+  };
 
-  // Group results by type
-  const grouped = {};
-  results.forEach((r) => {
-    const key = r.type === 'page' ? 'Pages' : r.type === 'work' ? 'Works' : 'Blog';
-    if (!grouped[key]) grouped[key] = [];
-    grouped[key].push(r);
-  });
+  const results = getResults(query);
 
-  const flatResults = results;
+  const executeAction = useCallback((q) => {
+    const cleanQ = q.trim().toLowerCase();
+    
+    // Command: Close all
+    if (cleanQ === 'close all' || cleanQ === 'close all tabs' || cleanQ === 'close all windows' || cleanQ === 'clear desktop') {
+      closeAllWindows();
+      closeWindow('search');
+      return true;
+    }
 
-  const handleKeyDown = useCallback((e) => {
+    // Command: Close specific
+    if (cleanQ.startsWith('close ')) {
+      const target = cleanQ.replace('close ', '');
+      const win = windows.find(w => w.title.toLowerCase().includes(target) || w.id.toLowerCase().includes(target));
+      if (win) {
+        closeWindow(win.id);
+        setQuery('');
+        return true;
+      }
+    }
+
+    // Command: Open
+    if (cleanQ.startsWith('open ')) {
+      const target = cleanQ.replace('open ', '');
+      const match = searchIndex.find(item => item.title.toLowerCase().includes(target));
+      if (match && WINDOW_DEFS[match.id]) {
+        openWindow(match.id, {
+          ...WINDOW_DEFS[match.id],
+          meta: match.folderKey ? { folderKey: match.folderKey } : match.meta
+        });
+        closeWindow('search');
+        return true;
+      }
+    }
+
+    // Fallback: Use selected result
+    if (results.length > 0) {
+      const selected = results[selectedIndex] || results[0];
+      if (selected && WINDOW_DEFS[selected.id]) {
+        openWindow(selected.id, {
+          ...WINDOW_DEFS[selected.id],
+          meta: selected.folderKey ? { folderKey: selected.folderKey } : selected.meta
+        });
+        closeWindow('search');
+        return true;
+      }
+    }
+
+    return false;
+  }, [results, selectedIndex, openWindow, closeWindow, closeAllWindows, windows]);
+
+  const handleKeyDown = (e) => {
     if (e.key === 'ArrowDown') {
       e.preventDefault();
-      setSelectedIndex((prev) => Math.min(prev + 1, flatResults.length - 1));
+      setSelectedIndex((prev) => Math.min(prev + 1, results.length - 1));
     } else if (e.key === 'ArrowUp') {
       e.preventDefault();
       setSelectedIndex((prev) => Math.max(prev - 1, 0));
     } else if (e.key === 'Enter') {
       e.preventDefault();
-      const selected = flatResults[selectedIndex];
-      if (selected) {
-        const windowId = selected.id;
-        if (WINDOW_DEFS[windowId]) {
-          openWindow(windowId, WINDOW_DEFS[windowId]);
-          closeWindow('search');
-        }
-      }
+      executeAction(query);
     } else if (e.key === 'Escape') {
       closeWindow('search');
     }
-  }, [flatResults, selectedIndex, openWindow, closeWindow]);
-
-  const highlightMatch = (text, q) => {
-    if (!q.trim()) return text;
-    const idx = text.toLowerCase().indexOf(q.toLowerCase());
-    if (idx === -1) return text;
-    return (
-      <>
-        {text.slice(0, idx)}
-        <strong style={{ color: 'var(--accent)' }}>{text.slice(idx, idx + q.length)}</strong>
-        {text.slice(idx + q.length)}
-      </>
-    );
   };
 
-  let flatIndex = -1;
-
   return (
-    <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-      {/* Search input */}
-      <div style={{
-        display: 'flex', alignItems: 'center', gap: 12,
-        height: 48, borderBottom: '1px solid var(--border)',
-        padding: '0 20px', flexShrink: 0,
-      }}>
-        <SearchIcon size={18} color="var(--text-muted)" />
-        <input
+    <div className={styles.searchContainer}>
+      <div className={styles.inputWrapper}>
+        <textarea
           ref={inputRef}
+          className={styles.inputField}
           value={query}
           onChange={(e) => { setQuery(e.target.value); setSelectedIndex(0); }}
           onKeyDown={handleKeyDown}
-          placeholder="Search portfolio..."
-          style={{
-            flex: 1, height: '100%', border: 'none', background: 'transparent',
-            fontSize: 18, fontFamily: 'var(--font-ui)', color: 'var(--text-primary)',
-            outline: 'none',
-          }}
+          placeholder="What do you want to know or to go to? Ask anything or go to anywhere you want"
         />
+        <button 
+          className={styles.enterButton}
+          onClick={() => executeAction(query)}
+          title="Press Enter to search or run command"
+        >
+          <CornerDownLeft className={styles.enterIcon} />
+        </button>
       </div>
 
-      {/* Results */}
-      <div style={{ flex: 1, overflowY: 'auto', padding: 16 }}>
-        {Object.entries(grouped).map(([category, items]) => (
-          <div key={category}>
-            <div style={{
-              fontSize: 11, fontWeight: 600, textTransform: 'uppercase',
-              letterSpacing: '0.08em', color: 'var(--text-muted)',
-              marginBottom: 6, marginTop: 8,
-            }}>
-              {category}
-            </div>
-            <AnimatePresence>
-              {items.map((item) => {
-                flatIndex++;
-                const idx = flatIndex;
-                const isSelected = idx === selectedIndex;
-                return (
-                  <motion.div
-                    key={`${item.type}-${item.id}-${item.title}`}
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: idx * 0.03 }}
-                    onClick={() => {
-                      if (WINDOW_DEFS[item.id]) {
-                        openWindow(item.id, WINDOW_DEFS[item.id]);
-                        closeWindow('search');
-                      }
-                    }}
-                    style={{
-                      height: 40, display: 'flex', alignItems: 'center', gap: 10,
-                      padding: '0 10px', borderRadius: 0, cursor: 'pointer',
-                      background: isSelected ? 'var(--border-light)' : 'transparent',
-                      transition: 'background 0.1s',
-                    }}
-                    onMouseEnter={() => setSelectedIndex(idx)}
-                  >
-                    <span style={{ fontSize: 14, color: 'var(--text-primary)' }}>
-                      {highlightMatch(item.title, query)}
-                    </span>
-                    <span style={{ fontSize: 12, color: 'var(--text-muted)', marginLeft: 'auto' }}>
-                      {item.subtitle}
-                    </span>
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
-          </div>
-        ))}
-        {results.length === 0 && (
-          <div style={{ textAlign: 'center', color: 'var(--text-muted)', padding: 32, fontSize: 14 }}>
-            No results found for "{query}"
-          </div>
-        )}
-      </div>
+
     </div>
   );
 }

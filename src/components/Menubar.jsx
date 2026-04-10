@@ -111,7 +111,7 @@ export default function Menubar() {
                   <span className={styles.shortcut}>Ctrl+Alt+A</span>
                 </div>
                 <div className={styles.dropdownItem} onClick={() => handleAction(() => openWindow('contact', WINDOW_DEFS.contact))}>
-                  <span>Contact Wes</span>
+                  <span>Contact Varun</span>
                   <span className={styles.shortcut}>Ctrl+Alt+K</span>
                 </div>
                 <div className={styles.dropdownItem} onClick={() => handleAction(() => openWindow('help', WINDOW_DEFS.help))}>

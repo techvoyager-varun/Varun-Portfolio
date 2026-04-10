@@ -25,10 +25,11 @@ const WINDOW_DEFS = {
   works: { title: 'Projects', component: 'works', defaultSize: { width: 920, height: 680 }, minWidth: 540, minHeight: 400, icon: '📁' },
   blog: { title: 'Blog', component: 'blog', defaultSize: { width: 860, height: 640 }, minWidth: 480, minHeight: 400, icon: '📝' },
   contact: { title: 'Contact', component: 'contact', defaultSize: { width: 640, height: 540 }, minWidth: 400, minHeight: 400, icon: '✉️' },
-  search: { title: 'Search', component: 'search', defaultSize: { width: 680, height: 500 }, minWidth: 440, minHeight: 340, icon: '🔍' },
+  search: { title: 'Search', component: 'search', defaultSize: { width: 460, height: 180 }, minWidth: 320, minHeight: 160, icon: '🔍' },
   settings: { title: 'Settings', component: 'settings', defaultSize: { width: 760, height: 640 }, minWidth: 500, minHeight: 440, icon: '⚙️' },
   terminal: { title: 'Terminal — guest@portfolio', component: 'terminal', defaultSize: { width: 780, height: 540 }, minWidth: 500, minHeight: 360, icon: '🖥️' },
   help: { title: 'Help', component: 'help', defaultSize: { width: 680, height: 560 }, minWidth: 440, minHeight: 380, icon: '❓' },
+  folder: { title: 'Folder', component: 'folder', defaultSize: { width: 440, height: 500 }, minWidth: 320, minHeight: 300, icon: '📂' },
 };
 
 export { WINDOW_DEFS };

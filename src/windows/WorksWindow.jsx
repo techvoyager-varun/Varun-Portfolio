@@ -34,6 +34,7 @@ function WorksWindow() {
           <span className={styles.typeBadge}>{p.type}</span>
         </div>
       ))}
+      <div className={styles.clickHint}>Click on any to know more about them</div>
     </div>
   );
 

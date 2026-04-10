@@ -47,7 +47,7 @@ function AboutWindow() {
                 <a href="https://linkedin.com/in/varun-rawat072" target="_blank" rel="noopener noreferrer" className={styles.link}>LinkedIn</a>,{' '}
                 check out my code on <a href="https://github.com/techvoyager-varun" target="_blank" rel="noopener noreferrer" className={styles.link}>GitHub</a>,{' '}
                 view my <a href="https://codeforces.com/profile/techvoyager" target="_blank" rel="noopener noreferrer" className={styles.link}>Codeforces</a> profile, or{' '}
-                <a href="#" className={styles.link} onClick={(e) => { e.preventDefault(); openWindow('contact', WINDOW_DEFS.contact); }}>get in touch</a>.
+                <a href="#" className={styles.link} onClick={(e) => { e.preventDefault(); e.stopPropagation(); openWindow('contact', WINDOW_DEFS.contact); }}>get in touch</a>.
               </p>
               <div className={styles.focusBox}>
                 <h3 className={styles.sectionLabel}>Current Focus</h3>

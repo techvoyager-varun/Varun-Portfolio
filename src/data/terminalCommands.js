@@ -1,5 +1,6 @@
 import { projects } from './projects';
 import { blogPosts } from './blogPosts';
+import { PHOTO_FOLDERS } from './photos';
 
 export const ABOUT_TEXT = `Based in Alwar, Rajasthan, India, I am a B.Tech Computer Science and Engineering student at The LNM Institute of Information Technology. I have a passion for building robust applications and solving complex algorithmic challenges.
 
@@ -63,6 +64,16 @@ export function getSearchIndex() {
       postId: b.id,
       title: b.title,
       subtitle: `${b.date} • ${b.readTime}`,
+    });
+  });
+
+  Object.entries(PHOTO_FOLDERS).forEach(([key, folder]) => {
+    items.push({
+      type: 'folder',
+      id: 'folder',
+      folderKey: key,
+      title: folder.label.charAt(0).toUpperCase() + folder.label.slice(1),
+      subtitle: `${folder.items.length} items`,
     });
   });
 

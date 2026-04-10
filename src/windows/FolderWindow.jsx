@@ -53,7 +53,7 @@ function FolderWindow({ meta }) {
           <div 
             key={item.id} 
             className={styles.listItem}
-            onClick={() => handleItemClick(item)}
+            onClick={(e) => { e.stopPropagation(); handleItemClick(item); }}
           >
             <div className={styles.iconWrapper}>
               {item.type === 'TEXT' ? (

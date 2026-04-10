@@ -1,61 +1,43 @@
 .help {
-  padding: 28px 32px;
+  padding: 32px 40px;
   overflow-y: auto;
   height: 100%;
-}
-
-.title {
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 20px;
-}
-
-.sectionLabel {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 12px;
-}
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 28px;
-}
-
-.tableRow {
-  border-bottom: 1px solid var(--border-light);
-}
-
-.tableCell {
-  padding: 8px 0;
-  font-size: 13px;
   color: var(--text-secondary);
 }
 
-.tableCellKeys {
-  padding: 8px 0;
-  width: 50%;
-}
-
-.keyBadge {
-  display: inline-block;
-  padding: 2px 6px;
-  background: var(--border-light);
-  border: 1px solid var(--border);
-  font-family: var(--font-mono);
-  font-size: 11px;
+.guideTitle {
+  font-family: 'Georgia', serif;
+  font-size: 32px;
+  font-weight: 500;
   color: var(--text-primary);
-  margin-right: 4px;
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
 }
 
-.keyPlus {
-  margin-right: 4px;
-  color: var(--text-muted);
-  font-size: 11px;
+.intro {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 32px;
+  color: var(--text-secondary);
+}
+
+.section {
+  margin-bottom: 32px;
+}
+
+.sectionHeader {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.text {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 12px;
 }
 
 .bulletList {
@@ -63,55 +45,80 @@
   padding: 0;
 }
 
-.bulletItem {
-  font-size: 13px;
+.bulletList li {
+  font-size: 14px;
   line-height: 1.7;
-  color: var(--text-secondary);
-  padding-left: 16px;
+  padding-left: 20px;
   position: relative;
-  margin-bottom: 4px;
+  margin-bottom: 10px;
 }
 
-.bulletDot {
+.bulletList li::before {
+  content: '•';
   position: absolute;
   left: 0;
-  top: 9px;
-  width: 4px;
-  height: 4px;
-  background: var(--accent);
+  color: var(--accent);
+}
+
+.tryText {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 16px;
+  line-height: 1.6;
+}
+
+.command {
+  font-family: var(--font-mono);
+  color: var(--accent);
+  background: var(--border-light);
+  padding: 2px 4px;
+  font-style: normal;
+  border-radius: 2px;
+}
+
+.codeBlock {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  background: var(--border-light);
+  padding: 16px;
+  border-left: 3px solid var(--accent);
+  color: var(--text-primary);
+  margin-top: 12px;
+  line-height: 1.5;
 }
 
 /* ── MOBILE ─────────────────────── */
 @media (max-width: 768px) {
   .help {
-    padding: 20px 16px;
+    padding: 24px 20px;
   }
 
-  .title {
-    font-size: 16px;
+  .guideTitle {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  .intro {
+    font-size: 14px;
+    margin-bottom: 24px;
   }
 }
 
 @media (max-width: 480px) {
   .help {
-    padding: 14px 12px;
+    padding: 20px 16px;
   }
 
-  .title {
-    font-size: 15px;
-    margin-bottom: 14px;
+  .guideTitle {
+    font-size: 22px;
   }
 
-  .tableCell, .bulletItem {
-    font-size: 12px;
+  .sectionHeader {
+    font-size: 11px;
   }
 
-  .keyBadge {
-    font-size: 10px;
-    padding: 1px 4px;
-  }
-
-  .tableCellKeys {
-    width: 40%;
+  .text, .bulletList li, .codeBlock {
+    font-size: 13px;
   }
 }

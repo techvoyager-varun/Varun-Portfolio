@@ -107,9 +107,22 @@ export default function Window({ windowData, children }) {
 
   // MOBILE: render fullscreen, no drag/resize
   if (isMobile) {
+    const isSearchModal = id === 'search' || windowData.isModal;
+    
     return (
       <div
-        style={{
+        style={isSearchModal ? {
+          position: 'absolute',
+          top: '15%',
+          left: '5%',
+          right: '5%',
+          zIndex,
+          display: 'flex',
+          flexDirection: 'column',
+          boxShadow: '0 20px 50px rgba(0,0,0,0.3)',
+          borderRadius: '0',
+          overflow: 'hidden',
+        } : {
           position: 'absolute',
           top: 0,
           left: 0,

@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { blogPosts } from '../data/blogPosts';
 import styles from '../styles/Blog.module.css';
 
@@ -7,44 +7,97 @@ const allTags = ['All', ...new Set(blogPosts.flatMap((p) => p.tags))];
 function BlogWindow() {
   const [activeTag, setActiveTag] = useState('All');
   const [selectedPost, setSelectedPost] = useState(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [view, setView] = useState('tags'); // 'tags', 'list', 'post'
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const filteredPosts = activeTag === 'All'
     ? blogPosts
     : blogPosts.filter((p) => p.tags.includes(activeTag));
 
-  const handleBack = () => setSelectedPost(null);
+  const handleBack = () => {
+    if (view === 'post') setView('list');
+    else if (view === 'list') setView('tags');
+    setSelectedPost(null);
+  };
+
+  const renderTags = () => (
+    <div className={styles.sidebar}>
+      <div className={styles.sidebarLabel}>Tags</div>
+      {allTags.map((tag) => (
+        <button
+          key={tag}
+          className={`${styles.tagBtn} ${activeTag === tag ? styles.tagBtnActive : ''}`}
+          onClick={() => { 
+            setActiveTag(tag); 
+            setSelectedPost(null); 
+            if (isMobile) setView('list');
+          }}
+        >
+          {tag}
+        </button>
+      ))}
+      <div className={styles.clickHint}>Click on any to know more about them</div>
+    </div>
+  );
+
+  const renderContent = () => (
+    <div className={styles.content}>
+      {selectedPost ? (
+        <PostView 
+          post={selectedPost} 
+          onBack={() => {
+            if (isMobile) setView('list');
+            setSelectedPost(null);
+          }} 
+          isMobile={isMobile} 
+        />
+      ) : (
+        <PostList 
+          posts={filteredPosts} 
+          onSelect={(post) => {
+            setSelectedPost(post);
+            if (isMobile) setView('post');
+          }} 
+          onBack={() => setView('tags')}
+          isMobile={isMobile}
+          activeTag={activeTag}
+        />
+      )}
+    </div>
+  );
+
+  if (!isMobile) {
+    return (
+      <div className={styles.blog}>
+        {renderTags()}
+        {renderContent()}
+      </div>
+    );
+  }
 
   return (
     <div className={styles.blog}>
-      {/* Tag sidebar */}
-      <div className={styles.sidebar}>
-        <div className={styles.sidebarLabel}>Tags</div>
-        {allTags.map((tag) => (
-          <button
-            key={tag}
-            className={`${styles.tagBtn} ${activeTag === tag ? styles.tagBtnActive : ''}`}
-            onClick={() => { setActiveTag(tag); setSelectedPost(null); }}
-          >
-            {tag}
-          </button>
-        ))}
-      </div>
-
-      {/* Content */}
-      <div className={styles.content}>
-        {selectedPost ? (
-          <PostView post={selectedPost} onBack={handleBack} />
-        ) : (
-          <PostList posts={filteredPosts} onSelect={setSelectedPost} />
-        )}
-      </div>
+      {view === 'tags' && renderTags()}
+      {view === 'list' && renderContent()}
+      {view === 'post' && renderContent()}
     </div>
   );
 }
 
-function PostList({ posts, onSelect }) {
+function PostList({ posts, onSelect, onBack, isMobile, activeTag }) {
   return (
-    <div>
+    <div className={styles.postListWrapper}>
+      {isMobile && (
+        <button className={styles.mobileBackBtn} onClick={onBack}>
+          ← Back to Tags ({activeTag})
+        </button>
+      )}
       {posts.map((post) => (
         <div
           key={post.id}
@@ -61,15 +114,16 @@ function PostList({ posts, onSelect }) {
           <div className={styles.postExcerpt}>{post.excerpt}</div>
         </div>
       ))}
+      <div className={styles.clickHint}>Click on any to know more about them</div>
     </div>
   );
 }
 
-function PostView({ post, onBack }) {
+function PostView({ post, onBack, isMobile }) {
   return (
     <div className={styles.postView}>
       <button className={styles.backBtn} onClick={onBack}>
-        ← All posts
+        {isMobile ? `← Back to list` : '← All posts'}
       </button>
       <h1 className={styles.postViewTitle}>{post.title}</h1>
       <div className={styles.postViewMeta}>

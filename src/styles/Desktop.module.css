@@ -40,15 +40,10 @@
   .desktopIcons {
     display: flex;
     flex-direction: row;
-    gap: 4px;
-    padding: 8px 8px 4px;
-    overflow-x: auto;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px;
     flex-shrink: 0;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-  .desktopIcons::-webkit-scrollbar {
-    display: none;
   }
 }
 

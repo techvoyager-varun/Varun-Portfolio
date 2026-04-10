@@ -183,6 +183,11 @@ export function DesktopProvider({ children }) {
     }, 1200); // skeleton loading time
   }, []);
 
+  const closeAllWindows = useCallback(() => {
+    setWindows([]);
+    playSound();
+  }, [playSound]);
+
   const value = {
     windows,
     refreshingWindows,
@@ -192,6 +197,7 @@ export function DesktopProvider({ children }) {
     soundEnabled,
     openWindow,
     closeWindow,
+    closeAllWindows,
     minimizeWindow,
     restoreWindow,
     focusWindow,
