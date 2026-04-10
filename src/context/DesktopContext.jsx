@@ -185,6 +185,7 @@ export function DesktopProvider({ children }) {
 
   const closeAllWindows = useCallback(() => {
     setWindows([]);
+    window.history.pushState(null, '', '/');
     playSound();
   }, [playSound]);
 

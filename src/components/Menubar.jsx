@@ -126,7 +126,7 @@ export default function Menubar() {
                 <div className={styles.dropdownItem} onClick={() => handleAction(() => {
                   sessionStorage.clear();
                   localStorage.clear();
-                  window.location.reload();
+                  window.location.href = '/';
                 })}>
                   <span>Reset System</span>
                 </div>
