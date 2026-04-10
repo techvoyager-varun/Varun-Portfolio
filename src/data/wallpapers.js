@@ -9,6 +9,13 @@ const BASE_WALLPAPERS = [
     srcUrl: null,
     useDog: true,
   },
+  {
+    key: 'assianian',
+    label: 'Assianian Landscape',
+    group: 'default',
+    srcUrl: '/assianian.jpg',
+    useDog: false,
+  },
 ];
 
 // Dynamically generate photo wallpapers from the folders data
