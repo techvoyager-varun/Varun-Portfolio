@@ -10,10 +10,10 @@ const BASE_WALLPAPERS = [
     useDog: true,
   },
   {
-    key: 'assianian',
-    label: 'Assianian Landscape',
+    key: 'assassin',
+    label: 'Assassin Landscape',
     group: 'default',
-    srcUrl: '/assianian.jpg',
+    srcUrl: '/Assassin.jpg',
     useDog: false,
   },
 ];

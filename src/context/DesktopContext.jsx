@@ -27,7 +27,7 @@ export function DesktopProvider({ children }) {
   const [refreshingWindows, setRefreshingWindows] = useState({});
   const [theme, setTheme] = useState(() => localStorage.getItem('portfolio-theme') || 'light');
   const [accentColor, setAccentColorState] = useState(() => localStorage.getItem('portfolio-accent') || 'orange');
-  const [wallpaper, setWallpaper] = useState(() => localStorage.getItem('portfolio-wallpaper') || 'assianian');
+  const [wallpaper, setWallpaper] = useState(() => localStorage.getItem('portfolio-wallpaper') || 'assassin');
   const [soundEnabled, setSoundEnabled] = useState(true);
   const zCounterRef = useRef(100);
 
