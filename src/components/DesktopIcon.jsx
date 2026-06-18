@@ -109,7 +109,7 @@ const DESKTOP_ICONS = [
     type: 'pdf',
     top: 306,
     left: 96,
-    href: '/resume.pdf',
+    href: '/Varun_Resume.pdf',
   },
 ];
 
