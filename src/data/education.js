@@ -6,7 +6,7 @@ export const education = [
     start: 'Aug 2024',
     end: 'Present',
     details: [
-      'Current CGPA: 8.25'
+      'Current CGPA: 8.38'
     ]
   },
   {

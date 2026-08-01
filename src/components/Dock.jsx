@@ -147,6 +147,7 @@ function DockIcon({ item, mouseX, isMobile, isActive, onClick }) {
         <Icon size={22} />
       </motion.div>
       {isActive ? <div className={styles.activeDot} /> : <div className={styles.inactiveDot} />}
+      <span className={styles.iconLabel}>{item.label}</span>
     </div>
   );
 }

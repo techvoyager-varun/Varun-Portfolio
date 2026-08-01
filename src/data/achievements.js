@@ -1,4 +1,4 @@
 export const achievements = [
-  'Secured 38th rank out of 252 students in the CSE Branch at LNMIIT up to 3rd semester of B.Tech.',
-  'Solved 200+ problems on Codeforces to enhance competitive programming and problem-solving skills.'
+  'Ranked 38th among 252 CSE undergraduate students.',
+  'Solved 500+ problems across Codeforces and LeetCode.'
 ];

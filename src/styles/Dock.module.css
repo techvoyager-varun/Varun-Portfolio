@@ -76,6 +76,18 @@
   visibility: hidden;
 }
 
+.iconLabel {
+  font-family: var(--font-ui);
+  font-size: 9px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+  text-align: center;
+  pointer-events: none;
+  user-select: none;
+}
+
 /* ── MOBILE ─────────────────────── */
 @media (max-width: 768px) {
   .dock {
@@ -114,6 +126,10 @@
 
   .inactiveDot {
     display: none;
+  }
+
+  .iconLabel {
+    font-size: 8px;
   }
 }
 

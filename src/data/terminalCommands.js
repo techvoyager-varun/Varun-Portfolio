@@ -1,6 +1,7 @@
 import { projects } from './projects';
 import { blogPosts } from './blogPosts';
 import { PHOTO_FOLDERS } from './photos';
+import { openSourceContributions } from './opensource';
 
 export const ABOUT_TEXT = `Based in Alwar, Rajasthan, India, I am a B.Tech Computer Science and Engineering student at The LNM Institute of Information Technology. I have a passion for building robust applications and solving complex algorithmic challenges.
 `;
@@ -73,6 +74,17 @@ export function getSearchIndex() {
       folderKey: key,
       title: folder.label.charAt(0).toUpperCase() + folder.label.slice(1),
       subtitle: `${folder.items.length} items`,
+    });
+  });
+
+  openSourceContributions.forEach((org) => {
+    org.prs.forEach((pr) => {
+      items.push({
+        type: 'opensource',
+        id: 'about',
+        title: `PR #${pr.prNumber} (${org.organization})`,
+        subtitle: pr.title,
+      });
     });
   });
 

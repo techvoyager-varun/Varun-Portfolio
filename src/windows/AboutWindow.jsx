@@ -7,8 +7,9 @@ import EducationWindow from './EducationWindow';
 import SkillsWindow from './SkillsWindow';
 import AchievementsWindow from './AchievementsWindow';
 import ExtracurricularWindow from './ExtracurricularWindow';
+import OpenSourceWindow from './OpenSourceWindow';
 
-const TABS = ['About', 'Education', 'Skills', 'Achievements', 'Activities'];
+const TABS = ['About', 'Education', 'Skills', 'Achievements', 'Open Source', 'Activities'];
 
 function AboutWindow() {
   const { openWindow } = useDesktop();
@@ -26,6 +27,7 @@ function AboutWindow() {
       case 'Education': return <EducationWindow />;
       case 'Skills': return <SkillsWindow />;
       case 'Achievements': return <AchievementsWindow />;
+      case 'Open Source': return <OpenSourceWindow />;
       case 'Activities': return <ExtracurricularWindow />;
       case 'About':
       default:
@@ -46,7 +48,8 @@ function AboutWindow() {
                 You can connect with me on{' '}
                 <a href="https://linkedin.com/in/varun-rawat072" target="_blank" rel="noopener noreferrer" className={styles.link}>LinkedIn</a>,{' '}
                 check out my code on <a href="https://github.com/techvoyager-varun" target="_blank" rel="noopener noreferrer" className={styles.link}>GitHub</a>,{' '}
-                view my <a href="https://codeforces.com/profile/techvoyager" target="_blank" rel="noopener noreferrer" className={styles.link}>Codeforces</a> profile, or{' '}
+                view my <a href="https://codeforces.com/profile/techvoyager" target="_blank" rel="noopener noreferrer" className={styles.link}>Codeforces</a> and{' '}
+                <a href="https://leetcode.com/u/Tech_Voyager" target="_blank" rel="noopener noreferrer" className={styles.link}>LeetCode</a> profiles, or{' '}
                 <a href="#" className={styles.link} onClick={(e) => { e.preventDefault(); e.stopPropagation(); openWindow('contact', WINDOW_DEFS.contact); }}>get in touch</a>.
               </p>
               <div className={styles.focusBox}>

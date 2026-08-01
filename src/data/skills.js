@@ -1,14 +1,14 @@
 export const skills = [
   {
     category: 'Languages',
-    items: ['C', 'C++', 'JavaScript', 'TypeScript', 'HTML', 'CSS']
+    items: ['C', 'C++', 'Java', 'Python', 'JavaScript', 'TypeScript', 'HTML', 'CSS']
   },
   {
     category: 'Frameworks & Libraries',
-    items: ['React.js', 'Next.js', 'Express.js', 'Node.js']
+    items: ['React.js', 'Next.js', 'Express.js', 'Node.js', 'WebSockets']
   },
   {
     category: 'Databases',
-    items: ['MongoDB']
+    items: ['MongoDB', 'PostgreSQL', 'MySQL', 'Redis']
   }
 ];
